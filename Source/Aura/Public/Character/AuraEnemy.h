@@ -5,6 +5,9 @@
 #include "CoreMinimal.h"
 #include "Character/AuraCharacterBase.h"
 #include "Interaction/EnemyInterface.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
+#include "AbilitySystemInterface.h"
 #include "AuraEnemy.generated.h"
 
 /**
@@ -17,9 +20,12 @@ class AURA_API AAuraEnemy : public AAuraCharacterBase, public IEnemyInterface
 
 public:
 	AAuraEnemy();
+
+	/* Enemy Interface */
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bHighlighted = false;
+	/* End Enemy Interface */
+	
+protected:
+	virtual void BeginPlay() override;
 };

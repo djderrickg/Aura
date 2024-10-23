@@ -19,7 +19,6 @@ void AAuraEffectActor::BeginPlay()
 	
 }
 
-//void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level)
 void AAuraEffectActor::ApplyEffectToTarget(AActor* TargetActor, int32 GameplayEffectIndex)
 {
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);

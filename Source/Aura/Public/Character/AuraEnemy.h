@@ -30,4 +30,15 @@ protected:
 	virtual void BeginPlay() override;
 
 	virtual void InitAbilityActorInfo() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Enemy Defaults")
+	int32 Level = 1;
+
+public:
+
+	/*
+	* Combat Interface
+	*/
+	virtual int32 GetPlayerLevel() override;
+
 };

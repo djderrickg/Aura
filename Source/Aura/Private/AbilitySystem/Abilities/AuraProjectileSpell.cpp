@@ -11,9 +11,12 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 	const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
+}
 
+void UAuraProjectileSpell::SpawnProjectile()
+{
 	// Determine if on server or not
-	const bool bIsServer = HasAuthority(&ActivationInfo);
+	const bool bIsServer = GetAvatarActorFromActorInfo()->HasAuthority();
 
 	if (!bIsServer)
 	{
@@ -24,7 +27,7 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 	if (CombatInterface)
 	{
 		const FVector SocketLocation = CombatInterface->GetCombatSocketLocation();
-		
+
 		// Spawn location for projectile is the socket location on Aura's weapon
 		FTransform SpawnTransform;
 		SpawnTransform.SetLocation(SocketLocation);
@@ -40,6 +43,4 @@ void UAuraProjectileSpell::ActivateAbility(const FGameplayAbilitySpecHandle Hand
 
 		Projectile->FinishSpawning(SpawnTransform);
 	}
-
-
 }

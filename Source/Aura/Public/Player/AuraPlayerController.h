@@ -1,12 +1,10 @@
-// Copyright Derrick Gennrich
-
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/PlayerController.h"
 #include "GameplayTagContainer.h"
-#include "Components/SplineComponent.h"
 #include "AuraPlayerController.generated.h"
+
 
 class UInputMappingContext;
 class UInputAction;
@@ -14,23 +12,21 @@ struct FInputActionValue;
 class IEnemyInterface;
 class UAuraInputConfig;
 class UAuraAbilitySystemComponent;
+class USplineComponent;
 
 /**
- * 
+ *
  */
 UCLASS()
 class AURA_API AAuraPlayerController : public APlayerController
 {
 	GENERATED_BODY()
-
 public:
 	AAuraPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
-
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
-
 private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> AuraContext;
@@ -46,12 +42,10 @@ private:
 	bool bShiftKeyDown = false;
 
 	void Move(const FInputActionValue& InputActionValue);
+
 	void CursorTrace();
-	
-
-	TScriptInterface<IEnemyInterface> LastActor;
-	TScriptInterface<IEnemyInterface> ThisActor;
-
+	IEnemyInterface* LastActor;
+	IEnemyInterface* ThisActor;
 	FHitResult CursorHit;
 
 	void AbilityInputTagPressed(FGameplayTag InputTag);
@@ -66,19 +60,17 @@ private:
 
 	UAuraAbilitySystemComponent* GetASC();
 
-	// Click to move variables
 	FVector CachedDestination = FVector::ZeroVector;
-	float FollowTime = 0.0f;
+	float FollowTime = 0.f;
 	float ShortPressThreshold = 0.5f;
 	bool bAutoRunning = false;
 	bool bTargeting = false;
 
 	UPROPERTY(EditDefaultsOnly)
-	float AutoRunAcceptanceRadius = 50.0f;
+	float AutoRunAcceptanceRadius = 50.f;
 
-	// Path spline for click to move
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USplineComponent> Spline;
-	
+
 	void AutoRun();
 };

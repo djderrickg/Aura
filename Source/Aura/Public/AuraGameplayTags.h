@@ -40,6 +40,7 @@ public:
 	FGameplayTag InputTag_2;
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
+	FGameplayTag InputTag_Shift;
 
 private:
 	static FAuraGameplayTags GameplayTags;

@@ -28,7 +28,7 @@ public:
 	FGameplayTag Attributes_Secondary_BlockChance;
 	FGameplayTag Attributes_Secondary_CriticalHitChance;
 	FGameplayTag Attributes_Secondary_CriticalHitDamage;
-	FGameplayTag Attributes_Secondary_CriticalHitResistence;
+	FGameplayTag Attributes_Secondary_CriticalHitResistance;
 	FGameplayTag Attributes_Secondary_HealthRegeneration;
 	FGameplayTag Attributes_Secondary_ManaRegeneration;
 	FGameplayTag Attributes_Secondary_MaxHealth;
@@ -41,6 +41,9 @@ public:
 	FGameplayTag InputTag_3;
 	FGameplayTag InputTag_4;
 	FGameplayTag InputTag_Shift;
+
+	FGameplayTag Damage;
+	FGameplayTag Effects_HitReact;
 
 private:
 	static FAuraGameplayTags GameplayTags;
